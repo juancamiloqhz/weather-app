@@ -7,11 +7,15 @@
     "@types/node": "12.0.12",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
+    "dotenv": "^8.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
+    "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.2",
-    "typescript": "3.5.2"
+    "typescript": "3.5.2",
+    "unsplash-api": "^1.2.0",
+    "use-debounce": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
