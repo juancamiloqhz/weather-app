@@ -11,13 +11,13 @@ const apiKey = "489a01eaa9ace34146514ce743d5325c";
 
 const App: React.FC = () => {
   const { forecast, latitude, longitude } = useLocation();
-  console.log(latitude, longitude);
-
-  const { data, loading } = useFetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&APPID=${apiKey}`
-  );
+  const url =
+    latitude && longitude
+      ? `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&APPID=${apiKey}`
+      : null;
+  const { data, loading, history } = useFetch(url);
   const [values, handleChange] = useForm({ searchTerm: "" });
-  console.log("Data: ", data);
+
   return (
     <Grid style={{ width: "100%", height: "100vh" }}>
       <Grid.Row columns={1} verticalAlign="middle">
@@ -37,7 +37,12 @@ const App: React.FC = () => {
             value={values.searchTerm}
             onChange={handleChange}
           />
-          {data && data.city && <Header as="h1">{data.city.name}</Header>}
+          {data && history && data.city && (
+            <Grid.Row>
+              <Header as="h1">{data.city.name}</Header>
+              <Header as="h2">{history[0].main.temp.toString()} ℃</Header>
+            </Grid.Row>
+          )}
         </Grid.Column>
       </Grid.Row>
     </Grid>

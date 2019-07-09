@@ -1,23 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+interface LocationData {
+    latitude?: string;
+    longitude?: string;
+    forecast?: string;
+}
 
 export const useLocation = () => {
-    const [coords, setCoords] = useState({ latitude: '', longitude: '', forecast: '' })
-    // Get the current position of the user
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            ({ coords: { longitude, latitude } }) => {
-                localStorage.setItem("latitude", latitude.toString())
-                localStorage.setItem("longitude", longitude.toString())
-                setCoords((prev) => ({ ...prev, longitude: longitude.toString(), latitude: latitude.toString() }))
-            },
-            (error) => setCoords(prev => ({ ...prev, forecast: error.message })),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-        );
-    }, [])
+    const [coords] = useState<LocationData>(() => getCoords())
 
-    return {
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-        forecast: coords.forecast
+    // Get the current position of the user
+    function getCoords() {
+        let locationData: LocationData = {};
+        navigator.geolocation.getCurrentPosition(
+            (location) => {
+                locationData.latitude = location.coords.latitude.toString();
+                locationData.longitude = location.coords.longitude.toString();
+                localStorage.setItem("latitude", locationData.latitude)
+                localStorage.setItem("longitude", locationData.longitude)
+            },
+            (error) => { locationData.forecast = error.message },
+            { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 },
+        )
+        return locationData
     }
+
+    return coords
 }
