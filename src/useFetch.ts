@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 interface StateProps {
   data?: any;
   loading: boolean;
-  history?: any[];
 }
 
 // TODO: Debounce this function to only trigger every 350 miliseconds
 export const useFetch = (url: string | null) => {
-  const [state, setState] = useState<StateProps>({ data: null, loading: true, history: [] });
+  const [state, setState] = useState<StateProps>({ data: null, loading: true });
 
   useEffect(() => {
     if (url) {
@@ -29,11 +28,12 @@ export const useFetch = (url: string | null) => {
           }
         })
         .then(data => {
-          setState((prev) => ({ ...prev, data, loading: false, history: data.list }));
+          // console.log("data: ", data)
+          setState((prev) => ({ ...prev, data, loading: false }));
         })
         .catch(err => console.log("err: ", err))
     } else {
-      setState({ data: '', loading: false, history: [] });
+      setState({ data: '', loading: false });
     }
 
   }, [url]);
