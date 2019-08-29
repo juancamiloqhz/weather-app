@@ -9,7 +9,12 @@ import { useDebounce } from "./useDebounce";
 const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 const accessUnsplashKey = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 const randomNumber = Math.floor(Math.random() * 10);
-const defaultImagesArr = ["https://unsplash.com/photos/IcAtXrAZx8E", "https://unsplash.com/photos/8kDOOrs608I", "https://unsplash.com/photos/RpS21EjSMgM", "https://unsplash.com/photos/Z-4kOr93RCI", "https://unsplash.com/photos/o2vx3hOPbUM"]
+const defaultImagesArr = [
+	"https://images.unsplash.com/photo-1465145177017-c5b156cd4d14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
+	"https://images.unsplash.com/photo-1494029722188-672a328c4989?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=650&q=80",
+	"https://images.unsplash.com/photo-1452697620382-f6543ead73b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=650&q=80",
+	"https://images.unsplash.com/photo-1554371421-06979d66e316?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+	"https://images.unsplash.com/photo-1506480704700-d4a381ecd2f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"]
 
 const App: React.FC = () => {
 	const [values, handleValuesChange] = useForm({ searchTerm: "" });
