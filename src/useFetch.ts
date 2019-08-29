@@ -7,12 +7,14 @@ interface StateProps {
 
 // TODO: Debounce this function to only trigger every 350 miliseconds
 export const useFetch = (url: string | null) => {
-  const [state, setState] = useState<StateProps>({ data: null, loading: true });
+  const [results, setResults] = useState<StateProps>({
+    data: null,
+    loading: true
+  });
 
   useEffect(() => {
     if (url) {
-
-      setState({ data: null, loading: true });
+      setResults({ data: null, loading: true });
 
       fetch(url)
         .then((res: any) => {
@@ -20,25 +22,23 @@ export const useFetch = (url: string | null) => {
             if (res.ok) {
               return res.json();
             } else {
-              throw new Error(res)
+              throw new Error(res);
             }
-          }
-          catch (error) {
-            console.log("Error: ", error)
+          } catch (error) {
+            console.log("Error: ", error);
           }
         })
         .then(data => {
           // console.log("data: ", data)
-          setState((prev) => ({ ...prev, data, loading: false }));
+          setResults(prev => ({ ...prev, data, loading: false }));
         })
-        .catch(err => console.log("err: ", err))
+        .catch(err => console.log("err: ", err));
     } else {
-      setState({ data: '', loading: false });
+      setResults({ data: "", loading: false });
     }
-
   }, [url]);
 
-  return state;
+  return results;
 };
 
 export default useFetch;

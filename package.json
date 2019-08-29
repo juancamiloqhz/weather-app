@@ -2,6 +2,12 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@types/jest": "24.0.15",
     "@types/node": "12.0.12",
@@ -16,12 +22,6 @@
     "typescript": "3.5.2",
     "unsplash-api": "^1.2.0",
     "use-debounce": "^2.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
