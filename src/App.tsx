@@ -6,6 +6,12 @@ import { useForm } from "./useForm";
 import { useLocation } from "./useLocation";
 import { useDebounce } from "./useDebounce";
 
+
+// TODO: Make this more fluid and correct
+// TODO: User need to accept share location from browser, default background image 
+// TODO: If user dont accetp alert from location, deliver only for search terms
+// TODO: useDebounce needs to happen. 
+
 const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 const accessUnsplashKey = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 const randomNumber = Math.floor(Math.random() * 10);
